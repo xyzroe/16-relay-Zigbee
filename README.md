@@ -1,11 +1,11 @@
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua)
 
 # 16-relay-Zigbee
-Zigbee sub board to 16 relays board using CC2652, with 4 isolated digital inputs, 4 direct pins, DS18B20 on board and CH340 for flashing using USB.
+Zigbee adapter for 16 relays board using CC2652, with 4 isolated digital inputs, 4 direct pins, DS18B20 on board and CH340 for flashing using USB.
 ![Main view](https://i.imgur.com/ORnDNKh.jpg)
 
 
-
+### Overview
 Front | Back
 :-:|:-:
 ![PCB front view](images/front.png)  | ![PCB back view](images/back.png)
@@ -15,7 +15,7 @@ Front | Back
 ![Schematic](hardware/Schematic.png)
 
 
-## Jumpers
+#### Jumpers
 Due to the fact that the Zigby module has only 16 free pins, you have to give up some relays if you need to use input pins or sensors.
 
 **Relays that always connected:**  
@@ -40,40 +40,39 @@ D27 - Relay 16
 *LED always connected to TDO_D16*  
 *Button always connected to D15 (BSL or SBL pin)*  
 
-## Inputs
+#### Inputs
 **SOLDER ONLY ONE COLOR**  
 ![Inputs description](images/inputs.png)  
-**RED** - HIGH VOLTAGE control (5-300 AC/DC)   
-**Electrical Hazard Risk**    
+**RED** - HIGH VOLTAGE control (5-300 AC/DC) **Electrical Hazard Risk**  (220V in schematic table)
 
-**YELLOW** - low voltage control (GND)
+**YELLOW** - low voltage control (GND) (5V in schematic table)
 
 
-## Firmware - PTVO
-In most cases, you will need the premium version. but it also works on the free version.
-Below is one of the configuration options.
+### Firmware - PTVO
+In most cases, you will need the premium version, but it also works great on the free version.
+Below is one of the configuration options with 10 relays, 4 inputs, 1 button, DS18B20 and DHT22.
 ![PTVO config](images/ptvo.png)
 
 
-## Flashing
+### Flashing
 CC2652 comes with firmware with Serial bootloader (SBL) activated, so you don't need J-Link.   
 I prefer to use [ZigStarGW-MT](https://github.com/xyzroe/ZigStarGW-MT), but you can also use cc2538_bsl.py or Flash Programmer 2.  
 
 ***Don't forget to activate SBL while making your firmware, otherwise you will need J-Link programmer to reactivate it***
 
-## 3.3V relay board mod
+### 3.3V relay board mod
 Some revisions of 16-channel relay boards cannot control using 3.3V voltage, because, built-in optocouplers are powered by 5V.
-Such boards need to be slightly redone - to separate the power supply of optocouplers from 5V and apply 3.3V to them.
+Such boards need to be slightly redone - to separate the power supply of optocouplers from 5V and apply 3.3V to them. Learn your board schematic for more.
 
 An example of where you can take 3.3V is in the photo below (AMS1117).
-![Relay board 3.3v mod](https://i.imgur.com/AWW3jOZ.jpg)
+![Relay board 3.3v mod](https://i.imgur.com/CldhzH6.jpeg)
 
 ### Binding
 The firmware supports direct binding on input and output endpoints.
 
 
 ### Files to reproduce
-* [Gerbers and BOM](https://github.com/xyzroe/16-relay-Zigbee/hardware)
+* [Gerbers and BOM](https://github.com/xyzroe/16-relay-Zigbee/tree/main/hardware)
 * [Firmware - PTVO](https://ptvo.info)
 
 
